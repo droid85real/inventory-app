@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="products.css" />
+    <!-- link to css file -->
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- navigation bar -->
+     <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Product</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+     </nav>
+
+    <!-- product table -->
+    <main>
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Image</th>
+        </tr>
+        <% products.forEach(product=>{ %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= product.name %></td>
+          <td><%= product.desc %></td>
+          <td><%= product.price %></td>
+          <td><img src="<%= product.imageUrl %>"></td>
+        </tr>
+        <% }) %>
+      </table>
+    </main>
+  </body>
+</html>

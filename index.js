@@ -10,7 +10,10 @@ const server=express();
 //create an instance of Product Controller
 const productController=new ProductController();
 
-server.get('/',productController.getProducts)
+server.get('/',productController.getProducts);
+
+//to serve static file like css
+server.use(express.static('src/views'));
 
 
 server.listen(3000,()=>{

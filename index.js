@@ -3,6 +3,7 @@ import express from 'express';
 import ProductController from './src/controllers/product.controller.js';
 import path from "path";
 import expressEjsLayouts from 'express-ejs-layouts';
+import valdationMiddleware from "./src/middleware/validation.middleware.js";
 
 const server=express();
 
@@ -31,7 +32,8 @@ server.get('/new-product',productController.getAddForm); //calling so user can g
 //parse form data
 server.use(express.urlencoded({extended:true}));
 
-server.post('/',productController.addNewForm); //to submit new product
+server.post('/',valdationMiddleware,productController.addNewForm); //to submit new product
+//validationMiddleware for validation of post data from new-product.ejs
 
 server.listen(3000,()=>{
     console.log("Server listening to 3000");

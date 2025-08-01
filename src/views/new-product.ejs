@@ -4,7 +4,7 @@
 <% if(errorMessage && errorMessage.length){ %>
 <ul style="color: red">
   <% errorMessage.forEach(err=>{ %>
-  <li><%= err %></li>
+  <li><%= err.msg %></li> <!--.msg is from validationError.array()-->>
   <% }) %>
 </ul>
 <% } %>

@@ -1,28 +1,31 @@
-const validateReq = (req, res, next) => {
+// validation.middleware.js
+import { body,validationResult } from "express-validator";
+//express validator have body object
+
+const validateReq = async(req, res, next) => {
   //validate data
-  const { name, description, price, imageUrl } = req.body;
-  let errors = [];
-  if (!name || name.trim() == "") {
-    errors.push("Name is required");
-  }
 
-  if (!description || description.trim() == "") {
-    errors.push("Description is reqrired");
-  }
+  //   1.setup rules for validation
+  const rules = [
+    body("name").notEmpty().withMessage("Name is required"),
+    body("description").notEmpty().withMessage("Description is required"),
+    body("price")
+      .isFloat({ gt: 0 })
+      .withMessage("Price should be positive value"),
+    body("imageUrl").isURL().withMessage("invalid URL"),
+  ];
 
-  if (!price || parseFloat(price) < 1) {
-    errors.push("Price must be positive");
-  }
+  //   2.run those rules
+  await Promise.all(rules.map(rule=>
+    rule.run(req)
+  ));
 
-  try {
-    new URL(imageUrl);
-  } catch (err) {
-    errors.push("Image url is invalid");
-  }
+//   3.check if there are any errors after running the rules
+  var validationErrors=validationResult(req);
 
-  if (errors.length > 0) {
+  if (!validationErrors.isEmpty()) {
     return res.render("new-product", {
-      errorMessage: errors, //passing error msg to new-product.ejs
+      errorMessage: validationErrors.array(), //passing error msg to new-product.ejs
       formData: req.body, //to repopulate with old data when error occur
     });
   }

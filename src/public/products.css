@@ -1,52 +1,19 @@
+/* product.css */
 :root{
     --tableBlack:#1f1d1d;
 }
 
 body{
     background-color: rgba(248, 248, 248, 0.877);
-    color: white;
-    margin: 0;
-    padding: 0;
 }
-
-nav{
-    background-color: #1f1d1d;
-    padding: 10px 20px;
-    position: sticky;
-    top: 0;
-    border-radius: 0 0 12px 12px;
-    z-index: 1000;
-}
-
-nav ul{
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-}
-
-nav li{
-    margin: 0 15px;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover{
-    color: #00ff99;
-}
-
-main{
+/* 
+.product-list{
     display: flex;
     justify-content: center;
     align-items: center;
     height: calc(100vh-60px);
     padding-top: 10px;
-}
+} */
 
 table{
     border-color: var(--tableBlack);

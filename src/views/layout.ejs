@@ -1,19 +1,18 @@
+<!-- layout.ejs -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="products.css" />
-    <!-- link to css file -->
-    <title>Document</title>
+    <link rel="stylesheet" href="/layout.css" />
   </head>
+
   <body>
-    <!-- navigation bar -->
-    <%- include('nav') %>
+    <%- include('nav') %> <!-- navigation bar -->
 
     <main>
         <!-- placeholder for rendering other ejs views -->
-         <%- body %><!-- This is where the page content goes -->
+        <%- body %><!-- This is where the page content goes -->
     </main>
   </body>
 </html>

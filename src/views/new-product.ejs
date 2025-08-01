@@ -1,0 +1,20 @@
+<!-- new-product.ejs -->
+<link rel="stylesheet" href="/new-product.css" />
+
+<h1>Add New Product</h1>
+<br>
+<form action="/" method="post">
+  <fieldset>
+    <legend>Add New Product Details:</legend>
+    <label for="name">Product Name: </label><br>
+    <input type="text" id="name" name="name" value="" placeholder="Product name"><br><br>
+    <label for="description">Product Description:</label><br>
+    <textarea type="text" id="description" name="description" row="10" cols="30" placeholder="description of the product"></textarea><br><br>
+    <label for="price">Price: </label><br>
+    <input type="number" id="price" name="price" placeholder="price" required><br><br>
+    <label for="imageUrl">Image URL: </label><br>
+    <input type="url" id="imageUrl" name="imageUrl"><br><br>
+    <input type="reset" value="Reset">
+    <input type="submit" value="Submit">
+  </fieldset>
+</form>

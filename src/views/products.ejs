@@ -1,19 +1,23 @@
 <!-- product table -->
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Price</th>
-    <th>Image</th>
-  </tr>
-  <% products.forEach(product=>{ %>
-  <tr>
-    <td><%= product.id %></td>
-    <td><%= product.name %></td>
-    <td><%= product.desc %></td>
-    <td><%= product.price %></td>
-    <td><img src="<%= product.imageUrl %>" /></td>
-  </tr>
-  <% }) %>
-</table>
+<link rel="stylesheet" href="/products.css" />
+
+<div class="product-list">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Image</th>
+    </tr>
+    <% products.forEach(product=>{ %>
+    <tr>
+      <td><%= product.id %></td>
+      <td><%= product.name %></td>
+      <td><%= product.desc %></td>
+      <td><%= product.price %></td>
+      <td><img src="<%= product.imageUrl %>" /></td>
+    </tr>
+    <% }) %>
+  </table>
+</div>

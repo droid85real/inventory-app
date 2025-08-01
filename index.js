@@ -1,3 +1,4 @@
+// index.js
 import express from 'express';
 import ProductController from './src/controllers/product.controller.js';
 import path from "path";
@@ -18,12 +19,19 @@ server.use(expressEjsLayouts);//use ejs layout (middleware)
 server.set('layout','layout'); //default layout
 
 //to serve static file like css
-server.use(express.static('src/views'));
+server.use(express.static(path.join(path.resolve(), "src", "public")));
 
 //create an instance of Product Controller
 const productController=new ProductController();
 
-server.get('/',productController.getProducts);
+server.get('/',productController.getProducts); //calling getProducts to get products
+
+server.get('/new-product',productController.getAddForm); //calling so user can get add product form
+
+//parse form data
+server.use(express.urlencoded({extended:true}));
+
+server.post('/',productController.addNewForm); //to submit new product
 
 server.listen(3000,()=>{
     console.log("Server listening to 3000");

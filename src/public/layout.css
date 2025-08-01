@@ -1,0 +1,44 @@
+/* layout.css */
+body {
+  background-color: rgba(255, 255, 255, 0.877);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+nav {
+  background-color: #1f1d1d;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  border-radius: 0 0 12px 12px;
+  z-index: 1000;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin: 0 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #00ff99;
+}
+
+main {
+  flex: 1;
+}

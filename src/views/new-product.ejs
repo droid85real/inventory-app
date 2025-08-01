@@ -1,20 +1,59 @@
 <!-- new-product.ejs -->
 <link rel="stylesheet" href="/new-product.css" />
 
+<% if(errorMessage && errorMessage.length){ %>
+<ul style="color: red">
+  <% errorMessage.forEach(err=>{ %>
+  <li><%= err %></li>
+  <% }) %>
+</ul>
+<% } %>
+
 <h1>Add New Product</h1>
-<br>
+<br />
 <form action="/" method="post">
   <fieldset>
     <legend>Add New Product Details:</legend>
-    <label for="name">Product Name: </label><br>
-    <input type="text" id="name" name="name" value="" placeholder="Product name"><br><br>
-    <label for="description">Product Description:</label><br>
-    <textarea type="text" id="description" name="description" row="10" cols="30" placeholder="description of the product"></textarea><br><br>
-    <label for="price">Price: </label><br>
-    <input type="number" id="price" name="price" placeholder="price" required><br><br>
-    <label for="imageUrl">Image URL: </label><br>
-    <input type="url" id="imageUrl" name="imageUrl"><br><br>
-    <input type="reset" value="Reset">
-    <input type="submit" value="Submit">
+    <label for="name">Product Name: </label><br />
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= formData?.name || '' %>"
+      placeholder="Product name"
+      required
+    /><br /><br />
+    <label for="description">Product Description:</label><br />
+    <textarea
+      type="text"
+      id="description"
+      name="description"
+      row="10"
+      cols="30"
+      placeholder="description of the product"
+      required
+    >
+<%= formData?.description || '' %></textarea
+    ><br /><br />
+    <label for="price">Price: </label><br />
+    <input
+      type="number"
+      id="price"
+      name="price"
+      value="<%= formData?.price || '' %>"
+      placeholder="price"
+      min="0"
+      required
+    /><br /><br />
+    <label for="imageUrl">Image URL: </label><br />
+    <input
+      type="url"
+      id="imageUrl"
+      name="imageUrl"
+      value="<%= formData?.imageUrl || 'https://dummyimage.com/200/ffffff/0c0d21&text=Sample+Image' %>"
+      required
+    /><br /><br />
+    <input type="reset" value="Reset" />
+    <input type="submit" value="Submit" />
   </fieldset>
 </form>

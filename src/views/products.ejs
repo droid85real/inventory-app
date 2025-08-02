@@ -1,4 +1,4 @@
-<!-- product table -->
+<!--products.ejs-->
 <link rel="stylesheet" href="/products.css" />
 
 <div class="product-list">
@@ -9,14 +9,16 @@
       <th>Description</th>
       <th>Price</th>
       <th>Image</th>
+      <th>Actions</th>
     </tr>
     <% products.forEach(product=>{ %>
     <tr>
       <td><%= product.id %></td>
       <td><%= product.name %></td>
-      <td><%= product.desc %></td>
+      <td><%= product.description %></td>
       <td><%= product.price %></td>
       <td><img src="<%= product.imageUrl %>" /></td>
+      <td><a href="/update-product/<%= product.id %>"><button>Update</button></a></td>
     </tr>
     <% }) %>
   </table>

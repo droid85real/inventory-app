@@ -1,4 +1,4 @@
-<!-- new-product.ejs -->
+<!-- update-product.ejs -->
 <link rel="stylesheet" href="/new-product.css" />
 
 <% if(errorMessage && errorMessage.length){ %>
@@ -9,11 +9,12 @@
 </ul>
 <% } %>
 
-<h1>Add New Product</h1>
+<h1>Update Product</h1>
 <br />
-<form action="/" method="post">
+<form action="/update-product" method="post">
   <fieldset>
-    <legend>Add New Product Details:</legend>
+    <legend>Update Product Details:</legend>
+    <input type="hidden" id="id" name="id" value="<%= formData.id %>"/>
     <label for="name">Product Name: </label><br />
     <input
       type="text"

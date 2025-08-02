@@ -35,6 +35,10 @@ server.use(express.urlencoded({extended:true}));
 server.post('/',valdationMiddleware,productController.addNewForm); //to submit new product
 //validationMiddleware for validation of post data from new-product.ejs
 
+server.get("/update-product/:id",productController.getUpdateProductView); //to get update.product.ejs
+
+server.post("/update-product",productController.postUpdateProduct); // to submit update-product
+
 server.listen(3000,()=>{
     console.log("Server listening to 3000");
 });

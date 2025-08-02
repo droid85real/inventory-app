@@ -2,16 +2,18 @@ export default class ProductModel {
   constructor(_id, _name, _desc, _price, _imageUrl) {
     this.id = _id;
     this.name = _name;
-    this.desc = _desc;
+    this.description = _desc;
     this.price = _price;
     this.imageUrl = _imageUrl;
   }
 
+  //to get product
   static get() {
     //directly call with just class name
     return products;
   }
 
+  //to add product
   static add(productObj) {
     let newProduct = new ProductModel(
       products.length + 1,
@@ -21,6 +23,17 @@ export default class ProductModel {
       productObj.imageUrl
     );
     products.push(newProduct);
+  }
+
+  //to get product by id
+  static getProductById(id){
+    return products.find((p)=>p.id==id); //find returns the first matching element
+  }
+
+  //to update product data
+  static update(productObj){
+    const index=products.findIndex((p)=>p.id==productObj.id);
+    products[index]=productObj;
   }
 }
 

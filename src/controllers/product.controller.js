@@ -22,7 +22,7 @@ export default class ProductController {
     // let products = ProductModel.get();
     // console.log(req.body);
 
-    ProductModel.add(req.body); //passing data we received
+    ProductModel.add(req.body,req); //passing data we received
 
     // res.render("products", { products: products });
     res.redirect("/"); //redirect after post to prevent resubmission on refresh
@@ -47,7 +47,7 @@ export default class ProductController {
 
   //to post (submit and reflect updated data)
   postUpdateProduct(req,res){
-    ProductModel.update(req.body);
+    ProductModel.update(req.body,req);
 
     res.redirect("/");
   }

@@ -4,6 +4,7 @@ import ProductController from './src/controllers/product.controller.js';
 import path from "path";
 import expressEjsLayouts from 'express-ejs-layouts';
 import valdationMiddleware from "./src/middleware/validation.middleware.js";
+import uploadFile from './src/middleware/upload.middleware.js';
 
 const server=express();
 
@@ -32,12 +33,17 @@ server.get('/new-product',productController.getAddForm); //calling so user can g
 //parse form data
 server.use(express.urlencoded({extended:true}));
 
-server.post('/',valdationMiddleware,productController.addNewForm); //to submit new product
-//validationMiddleware for validation of post data from new-product.ejs
+server.post( //to submit new product
+    '/',
+    uploadFile.single("imageUrl"), //middleware to proces a single file associated with the given form field
+    valdationMiddleware, //for validation of post data from new-product.ejs
+    productController.addNewForm 
+); 
+
 
 server.get("/update-product/:id",productController.getUpdateProductView); //to get update.product.ejs
 
-server.post("/update-product",productController.postUpdateProduct); // to submit update-product
+server.post("/update-product/",uploadFile.single("imageUrl"),productController.postUpdateProduct); // to submit update-product
 
 server.post("/delete-product/:id",productController.deleteProduct); //to delete product
 

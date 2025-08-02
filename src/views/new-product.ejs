@@ -11,7 +11,7 @@
 
 <h1>Add New Product</h1>
 <br />
-<form action="/" method="post">
+<form action="/" method="post" enctype="multipart/form-data">
   <fieldset>
     <legend>Add New Product Details:</legend>
     <label for="name">Product Name: </label><br />
@@ -44,13 +44,15 @@
       required
     /><br /><br />
     <label for="imageUrl">Image URL: </label><br />
-    <input
+    <!-- <input
       type="url"
       id="imageUrl"
       name="imageUrl"
       value="<%= formData?.imageUrl || 'https://dummyimage.com/200/ffffff/0c0d21&text=Sample+Image' %>"
       required
-    /><br /><br />
+    /><br /><br /> -->
+    <input type="file" id="imageUrl" name="imageUrl" accept="images/*"/> <!--accepts images of all types-->
+    <br /><br />
     <input type="reset" value="Reset" />
     <input type="submit" value="Submit" />
   </fieldset>

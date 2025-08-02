@@ -14,13 +14,15 @@ export default class ProductModel {
   }
 
   //to add product
-  static add(productObj) {
+  static add(productObj,req) {
+    const imageUrl=req.file ? `/images/${req.file.filename}` : '';
+
     let newProduct = new ProductModel(
       Date.now().toString(),
       productObj.name,
       productObj.description,
       productObj.price,
-      productObj.imageUrl
+      imageUrl
     );
     products.push(newProduct);
   }
@@ -31,9 +33,20 @@ export default class ProductModel {
   }
 
   //to update product data
-  static update(productObj){
+  static update(productObj,req){
     const index=products.findIndex((p)=>p.id==productObj.id);
-    products[index]=productObj;
+    const oldProduct=products[index];
+    const imageUrl=req.file 
+    ? `/images/${req.file.filename}` 
+    : oldProduct.imageUrl; //fallback to old image if no image is provided
+    
+    products[index]=new ProductModel(
+      productObj.id,
+      productObj.name,
+      productObj.description,
+      productObj.price,
+      imageUrl
+    );
   }
 
   //to delete product

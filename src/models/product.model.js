@@ -16,7 +16,7 @@ export default class ProductModel {
   //to add product
   static add(productObj) {
     let newProduct = new ProductModel(
-      products.length + 1,
+      Date.now().toString(),
       productObj.name,
       productObj.description,
       productObj.price,

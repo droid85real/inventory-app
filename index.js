@@ -39,8 +39,7 @@ server.get("/update-product/:id",productController.getUpdateProductView); //to g
 
 server.post("/update-product",productController.postUpdateProduct); // to submit update-product
 
-server.get("/delete-product/:id",productController.deleteProduct); //to delete product
-
+server.post("/delete-product/:id",productController.deleteProduct); //to delete product
 
 server.listen(3000,()=>{
     console.log("Server listening to 3000");

@@ -1,5 +1,6 @@
 <!--products.ejs-->
 <link rel="stylesheet" href="/products.css" />
+<script src="main.js"></script>
 
 <div class="product-list">
   <table>
@@ -20,7 +21,7 @@
       <td><img src="<%= product.imageUrl %>" /></td>
       <td>
         <a href="/update-product/<%= product.id %>"><button>Update</button></a>
-        <a href="/delete-product/<%= product.id %>"><button>Delete</button></a>
+        <button onclick="deleteProduct('<%= product.id %>')">Delete</button>
       </td>
     </tr>
     <% }) %>

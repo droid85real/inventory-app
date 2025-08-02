@@ -51,5 +51,18 @@ export default class ProductController {
 
     res.redirect("/");
   }
+  
+  //to delete product
+  deleteProduct(req,res){
+    const id=req.params.id;
 
+    const productFound=ProductModel.getProductById(id);
+
+    if(productFound){
+      ProductModel.delete(productFound);
+      res.redirect("/");
+    }else{
+      res.status(401).send("Product not found");
+    }
+  }
 }

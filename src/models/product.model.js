@@ -35,6 +35,14 @@ export default class ProductModel {
     const index=products.findIndex((p)=>p.id==productObj.id);
     products[index]=productObj;
   }
+
+  //to delete product
+  static delete(productObj){
+    const index=products.findIndex((p)=>p.id==productObj.id);
+    if(index!=-1){
+      products.splice(index,1);
+    }
+  }
 }
 
 //sample data
@@ -62,27 +70,6 @@ var products = [
   ),
   new ProductModel(
     4,
-    "Product1",
-    "Description for product 1",
-    "150",
-    "https://dummyimage.com/200/ffffff/0c0d21&text=Sample+Image"
-  ),
-  new ProductModel(
-    5,
-    "Product1",
-    "Description for product 1",
-    "150",
-    "https://dummyimage.com/200/ffffff/0c0d21&text=Sample+Image"
-  ),
-  new ProductModel(
-    6,
-    "Product1",
-    "Description for product 1",
-    "150",
-    "https://dummyimage.com/200/ffffff/0c0d21&text=Sample+Image"
-  ),
-  new ProductModel(
-    7,
     "Product1",
     "Description for product 1",
     "150",

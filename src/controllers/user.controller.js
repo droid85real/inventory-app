@@ -35,15 +35,30 @@ export default class UserController {
     const userFound = UserModel.check(req.body);
 
     if (userFound) {
+      req.session.user={ //store user data in session
+        id:userFound.id,
+        email: userFound.email,
+      };
       res.redirect("/");
     } else {
       // res.status(422).send("user not found");
       res
         .status(422)
         .render("login", {
-          errorMessage: [{ msg: "User not found or wrong credentuals" }],
+          errorMessage: [{ msg: "User not found or wrong credentials" }],
           formData: req.body,
         });
     }
+  }
+
+  //to logout
+  logout(req,res){
+    req.session.destroy((err)=>{ //destroy session
+      if(err){
+        console.log(err);
+      }else{
+        res.redirect("/login");
+      }
+    });
   }
 }

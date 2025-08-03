@@ -1,0 +1,47 @@
+<h1>Register</h1>
+
+<% if(errorMessage && errorMessage.length){ %>
+<!--to show errors-->
+<ul style="color: red">
+  <% errorMessage.forEach(err=>{ %>
+  <li><%= err.msg %></li>
+  <!--.msg is from validationError.array()-->> <% }) %>
+</ul>
+<% } %>
+
+<form action="/register" method="post">
+  <fieldset>
+    <legend>Register</legend>
+    <label for="name">User Name:</label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      value="<%= formData?.name %>"
+      placeholder="i.e. Monika"
+      required
+    />
+    <br /><br />
+    <label for="email">Enter email:</label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      value="<%= formData?.email %>"
+      placeholder="yourname@mail.com"
+      required
+    />
+    <br /><br />
+    <label for="password">Enter password:</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      placeholder="password"
+      required
+    />
+    <br /><br />
+    <input type="reset" value="reset" />
+    <input type="submit" value="Submit" />
+  </fieldset>
+</form>

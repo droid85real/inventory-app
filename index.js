@@ -5,6 +5,8 @@ import path from "path";
 import expressEjsLayouts from 'express-ejs-layouts';
 import valdationMiddleware from "./src/middleware/validation.middleware.js";
 import uploadFile from './src/middleware/upload.middleware.js';
+import UserController from './src/controllers/user.controller.js';
+import userRegisterValidationMiddleware from "./src/middleware/userRegisterValidation.middleware.js";
 
 const server=express();
 
@@ -46,6 +48,26 @@ server.get("/update-product/:id",productController.getUpdateProductView); //to g
 server.post("/update-product/",uploadFile.single("imageUrl"),productController.postUpdateProduct); // to submit update-product
 
 server.post("/delete-product/:id",productController.deleteProduct); //to delete product
+
+
+//create instance of User controller
+const usersController=new UserController();
+
+//to get resgistration form on route /register
+server.get("/register",usersController.getRegistrationForm);
+
+//to post data from register
+server.post(
+  "/register",
+  userRegisterValidationMiddleware, //form validation using express-validator
+  usersController.postRegistrationForm //to add user
+);
+
+//to get login form
+server.get("/login",usersController.getLogin);
+
+//to post login data
+server.post("/login",usersController.postLogin);
 
 server.listen(3000,()=>{
     console.log("Server listening to 3000");

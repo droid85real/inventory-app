@@ -1,6 +1,6 @@
 // validation.middleware.js
 import { body,validationResult } from "express-validator";
-//express validator have body object
+//express validator have body object and validationResult
 
 const validateReq = async(req, res, next) => {
   //validate data

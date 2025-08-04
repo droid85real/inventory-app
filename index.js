@@ -11,12 +11,16 @@ import session from 'express-session';
 import authMiddleware from './src/middleware/auth.middleware.js';
 import cookieParser from 'cookie-parser';
 import setLastVisit from './src/middleware/lastSeen.middleware.js';
+import dotenv from "dotenv";
 
 const server=express();
 
 // server.get('/',(req,res)=>{
 //     res.send("Welcome to inventory app");
 // });
+
+//configt dorenv
+dotenv.config();
 
 //setup view engine
 server.set('view engine','ejs'); //tells which view engine
@@ -33,7 +37,7 @@ server.use(cookieParser());
 
 //setup express-session
 server.use(session({
-  secret:"eaa29fbeb4dbbc568c26929fc9a5117c",
+  secret:process.env.SESSION_SECRET, //used dotenv to protect session secret key
   resave:false,
   saveUninitialized:true, //temporarily,
   cookie:{secure:false} //temp

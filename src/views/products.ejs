@@ -2,6 +2,10 @@
 <link rel="stylesheet" href="/products.css" />
 <script src="main.js"></script>
 
+<% if(locals.lastSeen){ %>
+<p>Your last visit was on: <%= locals.lastSeen %></p>
+<% } %>
+
 <div class="product-list">
   <table>
     <tr>

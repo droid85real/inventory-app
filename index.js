@@ -9,6 +9,8 @@ import UserController from './src/controllers/user.controller.js';
 import userRegisterValidationMiddleware from "./src/middleware/userRegisterValidation.middleware.js";
 import session from 'express-session';
 import authMiddleware from './src/middleware/auth.middleware.js';
+import cookieParser from 'cookie-parser';
+import setLastVisit from './src/middleware/lastSeen.middleware.js';
 
 const server=express();
 
@@ -23,6 +25,11 @@ server.set('views',path.join(path.resolve(), "src", "views")); //where to look f
 //setup ejslayout
 server.use(expressEjsLayouts);//use ejs layout (middleware)
 server.set('layout','layout'); //default layout
+
+//setup cookie-parser
+server.use(cookieParser());
+
+// server.use(setLastVisit); //set last visit middleware (for cookie setup on every request)
 
 //setup express-session
 server.use(session({
@@ -44,7 +51,11 @@ server.use(express.static(path.join(path.resolve(), "src", "public")));
 //create an instance of Product Controller
 const productController=new ProductController();
 
-server.get('/',productController.getProducts); //calling getProducts to get products
+server.get(//calling getProducts to get products
+  '/',
+  setLastVisit, //set cookie
+  productController.getProducts
+); 
 
 server.get( //calling so user can get add product form
   '/new-product',

@@ -121,7 +121,8 @@ server.get(
   "/logout",
   usersController.logout,
 );
+const port=process.env.PORT;
 
-server.listen(3000,()=>{
-    console.log("Server listening to 3000");
+server.listen(port || 3000,()=>{
+    console.log(`Listening on port ${port}`);
 });
